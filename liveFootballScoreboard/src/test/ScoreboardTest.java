@@ -88,4 +88,33 @@ public class ScoreboardTest {
             scoreboardService.finishMatch("Germany", "France");
         });
     }
+
+    @Test
+    public void testGetTotal() {
+        ScoreboardService scoreboardService = new ScoreboardService();
+
+        scoreboardService.startMatch("Mexico", "Canada");
+        scoreboardService.updateScore("Mexico", "Canada", 0, 5); // total = 5
+
+        scoreboardService.startMatch("Spain", "Brazil");
+        scoreboardService.updateScore("Spain", "Brazil", 10, 2); // total = 12
+
+        scoreboardService.startMatch("Germany", "France");
+        scoreboardService.updateScore("Germany", "France", 2, 2); // total = 4
+
+        scoreboardService.startMatch("Uruguay", "Italy");
+        scoreboardService.updateScore("Uruguay", "Italy", 6, 6); // total = 12
+
+        scoreboardService.startMatch("Argentina", "Australia");
+        scoreboardService.updateScore("Argentina", "Australia", 3, 1); // total = 4
+
+        List<String> total = scoreboardService.getTotal();
+
+        // Sequence check
+        assertEquals("Uruguay 6 - Italy 6", total.get(0)); //newer with a total score of 12
+        assertEquals("Spain 10 - Brazil 2", total.get(1));
+        assertEquals("Mexico 0 - Canada 5", total.get(2));
+        assertEquals("Argentina 3 - Australia 1", total.get(3)); // newer than Germany-France
+        assertEquals("Germany 2 - France 2", total.get(4));
+    }
 }
