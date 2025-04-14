@@ -34,4 +34,31 @@ public class ScoreboardTest {
         List<String> summary = scoreboardService.getTotal();
         assertTrue(summary.getFirst().contains("Spain 2 - Brazil 1"));
     }
+
+    @Test
+    public void testNegativeScore() {
+        ScoreboardService scoreboardService = new ScoreboardService();
+        scoreboardService.startMatch("Spain", "Brazil");
+
+        // Attempt to set a negative result
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            scoreboardService.updateScore("Spain", "Brazil", -1, 2);
+        });
+
+        assertEquals("Score cannot be negative", exception.getMessage());
+
+    }
+
+    @Test
+    public void testMatchNotFound() {
+        ScoreboardService scoreboardService = new ScoreboardService();
+        scoreboardService.startMatch("Spain", "Brazil");
+
+
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            scoreboardService.updateScore("Spain", "France", 2, 1);
+        });
+        assertEquals("Match not found.", exception.getMessage());
+
+    }
 }
