@@ -1,3 +1,4 @@
+import org.example.iservices.IScoreboardService;
 import org.example.services.ScoreboardService;
 import org.junit.Test;
 
@@ -7,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class ScoreboardTest {
     @Test
     public void startMatch() {
-        ScoreboardService scoreboard = new ScoreboardService();
+        IScoreboardService scoreboard = new ScoreboardService();
 
         scoreboard.startMatch("Mexico", "Canada");
         assertEquals(1, scoreboard.getAll().size(), "Match should be started and added to the scoreboard.");
@@ -16,7 +17,7 @@ public class ScoreboardTest {
     }
     @Test
     public void sameTeamsThrows() {
-        ScoreboardService scoreboardService= new ScoreboardService();
+        IScoreboardService scoreboardService= new ScoreboardService();
 
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
             scoreboardService.startMatch("Spain", "Spain");
@@ -27,7 +28,7 @@ public class ScoreboardTest {
 
     @Test
     public void emptyTeamNamesThrows() {
-        ScoreboardService scoreboardService = new ScoreboardService();
+        IScoreboardService scoreboardService = new ScoreboardService();
 
         assertThrows(IllegalArgumentException.class, () -> {
             scoreboardService.startMatch("", "Brazil");
@@ -48,7 +49,7 @@ public class ScoreboardTest {
 
     @Test
     public void matchExistsReturnsCorrectValue(){
-        ScoreboardService scoreboardService=new ScoreboardService();
+        IScoreboardService scoreboardService=new ScoreboardService();
         scoreboardService.startMatch("Spain", "Brazil");
 
         // match exists
@@ -59,7 +60,7 @@ public class ScoreboardTest {
 
     @Test
     public void updateScore() {
-        ScoreboardService scoreboardService = new ScoreboardService();
+        IScoreboardService scoreboardService = new ScoreboardService();
         scoreboardService.startMatch("Spain", "Brazil");
         scoreboardService.updateScore("Spain", "Brazil", 2, 1);
 
@@ -69,7 +70,7 @@ public class ScoreboardTest {
 
     @Test
     public void updateScoreNegativeThrows() {
-        ScoreboardService scoreboardService = new ScoreboardService();
+        IScoreboardService scoreboardService = new ScoreboardService();
         scoreboardService.startMatch("Spain", "Brazil");
 
         // Attempt to set a negative result
@@ -83,7 +84,7 @@ public class ScoreboardTest {
 
     @Test
     public void updateScoreMatchNotFoundThrows() {
-        ScoreboardService scoreboardService = new ScoreboardService();
+        IScoreboardService scoreboardService = new ScoreboardService();
         scoreboardService.startMatch("Spain", "Brazil");
 
 
@@ -96,7 +97,7 @@ public class ScoreboardTest {
 
     @Test
     public void updateScoreAfterFinishThrows() {
-        ScoreboardService scoreboardService = new ScoreboardService();
+        IScoreboardService scoreboardService = new ScoreboardService();
         scoreboardService.startMatch("Spain", "Brazil");
 
         // Match is finished
@@ -110,7 +111,7 @@ public class ScoreboardTest {
 
     @Test
     public void finishMatch(){
-        ScoreboardService scoreboardService=new ScoreboardService();
+        IScoreboardService scoreboardService=new ScoreboardService();
         scoreboardService.startMatch("Germany","France");
         scoreboardService.startMatch("Spain", "Brazil");
 
@@ -126,7 +127,7 @@ public class ScoreboardTest {
 
     @Test
     public void finishMatchNotFoundThrows() {
-        ScoreboardService scoreboardService = new ScoreboardService();
+        IScoreboardService scoreboardService = new ScoreboardService();
 
         scoreboardService.startMatch("Spain", "Brazil");
 
@@ -137,7 +138,7 @@ public class ScoreboardTest {
 
     @Test
     public void getAll() {
-        ScoreboardService scoreboardService = new ScoreboardService();
+        IScoreboardService scoreboardService = new ScoreboardService();
 
         scoreboardService.startMatch("Mexico", "Canada");
         scoreboardService.updateScore("Mexico", "Canada", 0, 5); // total = 5
@@ -166,7 +167,7 @@ public class ScoreboardTest {
 
     @Test
     public void getEmptyListWhenNoMatches(){
-        ScoreboardService scoreboardService=new ScoreboardService();
+        IScoreboardService scoreboardService=new ScoreboardService();
         List<String> matches=scoreboardService.getAll();
         assertTrue(matches.isEmpty(), "Expected empty list when there are no matches.");
     }

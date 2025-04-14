@@ -1,5 +1,6 @@
 package org.example.services;
 
+import org.example.iservices.IScoreboardService;
 import org.example.models.Match;
 
 import java.util.ArrayList;
@@ -8,7 +9,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class ScoreboardService {
+public class ScoreboardService implements IScoreboardService {
     List<Match> matches=new ArrayList<>();
     public void startMatch(String homeTeam, String awayTeam){
         if (homeTeam == null || awayTeam == null || homeTeam.trim().isEmpty() || awayTeam.trim().isEmpty()) {
