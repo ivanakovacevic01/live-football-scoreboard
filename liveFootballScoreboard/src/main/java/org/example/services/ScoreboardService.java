@@ -9,6 +9,9 @@ import java.util.stream.Collectors;
 public class ScoreboardService {
     List<Match> matches=new ArrayList<>();
     public void startMatch(String homeTeam, String awayTeam){
+        if(homeTeam.equals(awayTeam)){
+            throw new IllegalArgumentException("Home and away team cannot be the same");
+        }
         matches.add(new Match(homeTeam,awayTeam));
     }
 

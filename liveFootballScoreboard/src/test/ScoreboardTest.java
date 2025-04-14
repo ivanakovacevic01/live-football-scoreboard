@@ -14,5 +14,14 @@ public class ScoreboardTest {
         assertTrue(scoreboard.getTotal().getFirst().contains("Mexico"));
         assertTrue(scoreboard.getTotal().getFirst().contains("Canada"));
     }
+    @Test
+    public void testSameTeams() {
+        ScoreboardService scoreboardService= new ScoreboardService();
 
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            scoreboardService.startMatch("Spain", "Spain");
+        });
+
+        assertEquals("Home and away team cannot be the same", exception.getMessage());
+    }
 }
