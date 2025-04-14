@@ -77,4 +77,15 @@ public class ScoreboardTest {
         assertEquals(1, total.size());
         assertFalse(total.getFirst().contains("Spain"));
     }
+
+    @Test
+    public void testFinishMatchNotFound() {
+        ScoreboardService scoreboardService = new ScoreboardService();
+
+        scoreboardService.startMatch("Spain", "Brazil");
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            scoreboardService.finishMatch("Germany", "France");
+        });
+    }
 }
