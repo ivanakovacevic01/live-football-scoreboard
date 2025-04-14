@@ -3,6 +3,7 @@ package org.example.services;
 import org.example.models.Match;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -16,7 +17,7 @@ public class ScoreboardService {
     }
 
     public List<String> getTotal(){
-        return matches.stream().map(Match::toString).collect(Collectors.toList());
+        return matches.stream().sorted(Comparator.comparingInt(Match::getTotalScore).thenComparing(Match::getStartTime).reversed()).map(Match::toString).collect(Collectors.toList());
     }
     public void updateScore(String homeTeam, String awayTeam,int homeTeamScore,int awayTeamScore){
         for(Match match:matches){
