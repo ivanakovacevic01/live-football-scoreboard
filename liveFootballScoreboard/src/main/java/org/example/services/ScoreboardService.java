@@ -18,6 +18,17 @@ public class ScoreboardService {
     public List<String> getTotal(){
         return matches.stream().map(Match::toString).collect(Collectors.toList());
     }
-    public void updateScore(String homeTeam, String awayTeam,int homeTeamScore,int awayTeamScore) {
+    public void updateScore(String homeTeam, String awayTeam,int homeTeamScore,int awayTeamScore){
+        for(Match match:matches){
+            if(homeTeamScore<0 || awayTeamScore<0){
+                throw new IllegalArgumentException("Score cannot be negative");
+            }
+            if(match.getHomeTeam().equals(homeTeam) && match.getAwayTeam().equals(awayTeam)){
+                match.updateScore(homeTeamScore,awayTeamScore);
+                break;
+            }
+        }
+        throw new IllegalArgumentException("Match not found.");
     }
+    public void finishMatch(String homeTeam, String awayTeam){}
 }

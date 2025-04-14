@@ -61,4 +61,20 @@ public class ScoreboardTest {
         assertEquals("Match not found.", exception.getMessage());
 
     }
+
+    @Test
+    public void testFinishMatch(){
+        ScoreboardService scoreboardService=new ScoreboardService();
+        scoreboardService.startMatch("Germany","France");
+        scoreboardService.startMatch("Spain", "Brazil");
+
+        assertEquals(2, scoreboardService.getTotal().size());
+
+        scoreboardService.finishMatch("Spain", "Brazil");
+
+        // There should be one match
+        List<String> total = scoreboardService.getTotal();
+        assertEquals(1, total.size());
+        assertFalse(total.getFirst().contains("Spain"));
+    }
 }
