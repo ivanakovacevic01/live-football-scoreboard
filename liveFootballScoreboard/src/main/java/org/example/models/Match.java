@@ -6,6 +6,7 @@ public class Match {
     private int homeTeamScore;
     private int awayTeamScore;
     private long startTime;
+    private boolean isFinished=false;
 
     public Match(String homeTeam, String awayTeam) {
         this.homeTeam = homeTeam;
@@ -42,6 +43,14 @@ public class Match {
 
     public int getTotalScore(){
         return this.homeTeamScore+this.awayTeamScore;
+    }
+
+    public boolean isFinished() {
+        return isFinished;
+    }
+
+    public void setFinished(boolean finished) {
+        isFinished = finished;
     }
 
     @Override
