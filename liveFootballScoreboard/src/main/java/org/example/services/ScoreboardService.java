@@ -18,5 +18,7 @@ public class ScoreboardService {
     public List<String> getTotal(){
         return matches.stream().map(Match::toString).collect(Collectors.toList());
     }
+    public void updateScore(String homeTeam, String awayTeam,int homeTeamScore,int awayTeamScore){
 
+    }
 }

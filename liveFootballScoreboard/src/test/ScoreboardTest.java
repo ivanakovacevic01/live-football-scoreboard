@@ -24,4 +24,14 @@ public class ScoreboardTest {
 
         assertEquals("Home and away team cannot be the same", exception.getMessage());
     }
+
+    @Test
+    public void testUpdateScore() {
+        ScoreboardService scoreboardService = new ScoreboardService();
+        scoreboardService.startMatch("Spain", "Brazil");
+        scoreboardService.updateScore("Spain", "Brazil", 2, 1);
+
+        List<String> summary = scoreboardService.getTotal();
+        assertTrue(summary.getFirst().contains("Spain 2 - Brazil 1"));
+    }
 }
