@@ -25,10 +25,16 @@ public class ScoreboardService {
             }
             if(match.getHomeTeam().equals(homeTeam) && match.getAwayTeam().equals(awayTeam)){
                 match.updateScore(homeTeamScore,awayTeamScore);
-                break;
+                return;
             }
         }
         throw new IllegalArgumentException("Match not found.");
     }
-    public void finishMatch(String homeTeam, String awayTeam){}
+    public void finishMatch(String homeTeam, String awayTeam){
+        boolean removed = matches.removeIf(match -> match.getHomeTeam().equals(homeTeam) && match.getAwayTeam().equals(awayTeam));
+
+        if (!removed) {
+            throw new IllegalArgumentException("Match not found: " + homeTeam + " - " + awayTeam);
+        }
+    }
 }
