@@ -28,9 +28,23 @@ Right click on `ScoreboardTest` in the `test` folder → Run 'ScoreboardTest'
   
   **2. Build the project**
   
-  **3. Use the generated JAR in other projects**
+  ## How to use in IntelliJ
+**1. Open IntelliJ IDEA → `Open` project folder**
+ 
+**2. Use `Main` class for testing**
 
-     target/football-scoreboard-library-1.0-SNAPSHOT.jar
+**3. Run with right-click → `Run Main.main()`**
+  
+## How to download the library
+
+The *Football Scoreboard Library* is available for download through GitHub Releases. You can obtain the JAR file by following these steps:
+
+1. Navigate to the https://github.com/ivanakovacevic01/live-football-scoreboard/releases.
+2. Find the latest release tagged with the version number you're interested in (`v1.0.0`).
+3. Under the "Assets" section, click on the JAR file (`liveFootballScoreboard-1.0-SNAPSHOT.jar`) to download it.
+
+Once downloaded, you can add this JAR to your project and start using it. 
+
 
   If you want to include this library in another Maven project, install it locally:
   
@@ -51,12 +65,7 @@ Right click on `ScoreboardTest` in the `test` folder → Run 'ScoreboardTest'
   </dependency>
   ```
 
-## How to use in IntelliJ
-**1. Open IntelliJ IDEA → `Open` project folder**
- 
-**2. Use `Main` class for testing**
 
-**3. Run with right-click → `Run Main.main()`**
 
 
 
