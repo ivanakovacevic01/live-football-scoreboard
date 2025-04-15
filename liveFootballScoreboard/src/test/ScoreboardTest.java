@@ -1,4 +1,5 @@
 import org.example.iservices.IScoreboardService;
+import org.example.models.Match;
 import org.example.services.ScoreboardService;
 import org.junit.Test;
 
@@ -30,21 +31,17 @@ public class ScoreboardTest {
     public void emptyTeamNamesThrows() {
         IScoreboardService scoreboardService = new ScoreboardService();
 
-        assertThrows(IllegalArgumentException.class, () -> {
-            scoreboardService.startMatch("", "Brazil");
-        });
+        assertThrows(IllegalArgumentException.class, () -> scoreboardService.startMatch("", "Brazil"),
+                "Should throw when home team name is empty");
 
-        assertThrows(IllegalArgumentException.class, () -> {
-            scoreboardService.startMatch("Spain", " ");
-        });
+        assertThrows(IllegalArgumentException.class, () -> scoreboardService.startMatch("Spain", " "),
+                "Should throw when away team name is blank");
 
-        assertThrows(IllegalArgumentException.class, () -> {
-            scoreboardService.startMatch("", "");
-        });
+        assertThrows(IllegalArgumentException.class, () -> scoreboardService.startMatch("", ""),
+                "Should throw when both team names are empty");
 
-        assertThrows(IllegalArgumentException.class, () -> {
-            scoreboardService.startMatch(null, "");
-        });
+        assertThrows(IllegalArgumentException.class, () -> scoreboardService.startMatch(null, ""),
+                "Should throw when home team name is null");
     }
 
     @Test
@@ -53,9 +50,9 @@ public class ScoreboardTest {
         scoreboardService.startMatch("Spain", "Brazil");
 
         // match exists
-        assertTrue(scoreboardService.matchExists("Spain", "Brazil"));
+        assertTrue(scoreboardService.isMatchExisting("Spain", "Brazil"));
         //match doesn't exist
-        assertFalse(scoreboardService.matchExists("Germany", "France"));
+        assertFalse(scoreboardService.isMatchExisting("Germany", "France"));
     }
 
     @Test
@@ -91,7 +88,7 @@ public class ScoreboardTest {
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
             scoreboardService.updateScore("Spain", "France", 2, 1);
         });
-        assertEquals("Match not found.", exception.getMessage());
+        assertEquals("Match not found: Spain - France", exception.getMessage());
 
     }
 

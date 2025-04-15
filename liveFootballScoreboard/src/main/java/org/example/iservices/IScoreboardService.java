@@ -10,5 +10,5 @@ public interface IScoreboardService {
     List<Match> getNotFinishedMatches();
     void updateScore(String homeTeam, String awayTeam, int homeTeamScore, int awayTeamScore);
     void finishMatch(String homeTeam, String awayTeam);
-    boolean matchExists(String homeTeam, String awayTeam);
+    boolean isMatchExisting(String homeTeam, String awayTeam);
 }
