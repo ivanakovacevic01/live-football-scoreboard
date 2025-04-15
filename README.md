@@ -25,15 +25,28 @@ Right click on `ScoreboardTest` in the `test` folder → Run 'ScoreboardTest'
   **1. Clone the repository**
   
      git clone https://github.com/ivanakovacevic01/live-football-scoreboard.git
+     
+Then open the project in IntelliJ IDEA.
   
   **2. Build the project**
-  
-  ## How to use in IntelliJ
-**1. Open IntelliJ IDEA → `Open` project folder**
- 
-**2. Use `Main` class for testing**
 
-**3. Run with right-click → `Run Main.main()`**
+Open the terminal inside IntelliJ or your command line, and run:
+
+      mvn clean install
+
+
+This will build the project and download all required dependencies.
+
+  
+  **3. Open and run the main class**
+  
+  **In IntelliJ navigate to** 
+  
+ `src/main/java/org/example/Main.java`
+     
+  **Right-click on the Main class and select:** 
+  
+  Run `Main.main()`
   
 ## How to download the library
 
