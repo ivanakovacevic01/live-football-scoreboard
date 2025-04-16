@@ -18,7 +18,9 @@ The project is developed following the Test-Driven Development (TDD) approach. U
 
 To run all tests:
 
-Right click on `ScoreboardTest` in the `test` folder → Run 'ScoreboardTest'
+Right click on `test` folder -> `Mark Directory as` -> `Test Sources Root`
+
+Right click on `ScoreboardTest` in the `test` folder → `Run 'ScoreboardTest'`
 
 ## Installation
 
